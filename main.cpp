@@ -50,10 +50,13 @@ Loop loop3 = { 3, patterns3 };
 Loop _loops[3] = { loop1, loop2, loop3 };
 Loops loops = { 3, _loops };
 
+int duration_factors[3] = { 1, 4, 8 };
+
 int main() {
     int loop_counter = 0;
     int pattern_counter = 0;
     bool _switch = s;
+    int duration_factor_index = 0;
     while (true) {
         const Loop loop = loops.loops[loop_counter];
         const Pattern pattern = loop.patterns[pattern_counter];
@@ -62,7 +65,7 @@ int main() {
         l2 = pattern.pattern[1];
         l3 = pattern.pattern[2];
 
-        wait(pattern.duration);
+        wait(pattern.duration * duration_factors[duration_factor_index]);
 
         pattern_counter++;
         if (pattern_counter >= loop.len)
@@ -75,6 +78,9 @@ int main() {
             if (loop_counter >= loops.len) {
                 pattern_counter = 0;
                 loop_counter = 0;
+                duration_factor_index++;
+                if (duration_factor_index >= 3)
+                    duration_factor_index = 0;
             }
         }
     }
