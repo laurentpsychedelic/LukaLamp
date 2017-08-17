@@ -3,10 +3,10 @@
 #include "mbed.h"
 #pragma GCC diagnostic pop
 
-DigitalIn  s(p9);
-DigitalOut l1(p10);
-DigitalOut l2(p11);
-DigitalOut l3(p12);
+DigitalIn  s (dp13);
+DigitalOut l1(dp9 );
+DigitalOut l2(dp10);
+DigitalOut l3(dp11);
 
 struct Pattern {
     float duration; // s
